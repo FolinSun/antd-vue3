@@ -1,16 +1,15 @@
 import request from '@/utils/request';
 
-// export async function queryCurrent(): Promise<any> {
-//   return request({
-//       url: '/user/info',
-//       method: 'get'
-//   });
-// }
-
-export const queryCurrent = (params: any): Promise<any> => {
+export async function userTest(): Promise<any> {
   return request({
-    url: '/user/info',
+    url: '/user/test',
     method: 'get',
-    params,
   });
-};
+}
+
+export async function getMenu(): Promise<any> {
+  return request({
+    url: '/menu',
+    method: 'get',
+  });
+}

@@ -2,7 +2,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { AppRouteModule } from './router.config';
 
-import Layout from '../layouts/index.vue';
+// 默认父组件
+import Layout from '../layouts/IndexLayout/index.vue';
 
 /* Router modules */
 
@@ -66,64 +67,6 @@ const basicRoutes: AppRouteModule[] = [
     ],
   },
 ];
-
-// 异步路由
-// const asyncRoutes: AppRouteModule[] = [
-//   {
-//     path: '/',
-//     name: 'Home',
-//     component: Layout,
-//     redirect: '/home',
-//     meta: {
-//       title: '首页',
-//       icon: 'home',
-//     },
-//     children: [
-//       {
-//         path: 'home',
-//         name: 'Home',
-//         meta: {
-//           title: '首页',
-//           icon: 'home',
-//         },
-//         component: () =>
-//           import(/* webpackChunkName: "about" */ '../views/home/index.vue'),
-//       },
-//     ],
-//   },
-//   {
-//     path: '/example',
-//     name: 'Example',
-//     component: Layout,
-//     redirect: '/example/tree',
-//     meta: {
-//       title: 'Example',
-//       icon: 'example',
-//     },
-//     children: [
-//       {
-//         path: 'tree',
-//         name: 'Tree',
-//         component: () =>
-//           import(/* webpackChunkName: "tree" */ '@/views/tree/index.vue'),
-//         meta: {
-//           title: 'Tree',
-//           icon: 'tree',
-//         },
-//       },
-//       {
-//         path: 'table',
-//         name: 'Table',
-//         component: () =>
-//           import(/* webpackChunkName: "table" */ '@/views/table/index.vue'),
-//         meta: {
-//           title: 'Table',
-//           icon: 'table',
-//         },
-//       },
-//     ],
-//   },
-// ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

@@ -2,7 +2,7 @@
 const bodyParser = require('body-parser');
 const mockServer = require('./mock/mock-server');
 
-const { VUE_APP_PORT, NODE_ENV, VUE_APP_MOCK } = process.env;
+const { VUE_APP_PORT, NODE_ENV, VUE_APP_MOCK, VUE_APP_BASE_URL } = process.env;
 
 module.exports = {
   publicPath: '/',
@@ -27,16 +27,17 @@ module.exports = {
       }
     },
     // 开发代理
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://127.0.0.1:3000',
-    //     // target是域名的话，需要这个参数
-    //     changeOrigin: true,
-    //     // 设置支持https协议的代理
-    //     secure: false,
-    //     // pathRewrite: {'^/api': ''},
-    //   },
-    // },
+    proxy: {
+      [VUE_APP_BASE_URL]: {
+        target: `http://localhost:${VUE_APP_PORT}`,
+        // target是域名的话，需要这个参数
+        changeOrigin: true,
+        // 设置支持https协议的代理
+        secure: false,
+        // '^/api'
+        // pathRewrite: { [`^${VUE_APP_BASE_URL}`]: '' },
+      },
+    },
   },
   css: {
     loaderOptions: {

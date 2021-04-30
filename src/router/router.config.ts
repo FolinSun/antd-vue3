@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw, RouteLocation, RouteLocationRaw } from 'vue-router';
 import { DefineComponent } from 'vue';
 
 type Recordable<T = any> = {
@@ -13,8 +13,8 @@ export type Component<T extends any = any> =
 /**
  * meta 参数定义
  */
-export interface RouteMeta {
-  // 路由title  一般必填
+interface RouteMeta {
+  // 标题，一般必填，用于菜单、浏览器title或者面包屑中展示的文字
   title: string;
   // 图标，也是菜单图标
   icon?: string;
@@ -24,14 +24,14 @@ export interface RouteMeta {
   hideMenu?: boolean;
   // 隐藏所有子菜单
   hideChildrenInMenu?: boolean;
+  // 当前路由不再标签页显示
+  hideTab?: boolean;
   // 当前激活的菜单。用于配置详情页时左侧激活的菜单路径
   currentActiveMenu?: string;
   // 是否需要鉴权
   requiresAuth?: boolean;
   // 是否固定标签
   affix?: boolean;
-  // 当前路由不再标签页显示
-  hideTab?: boolean;
 }
 
 /**
@@ -53,8 +53,10 @@ export interface RouteMeta {
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   name: string;
   meta: RouteMeta;
+  redirect?: RouteLocationRaw | ((to: RouteLocation) => RouteLocationRaw);
   component?: Component | string;
   children?: AppRouteRecordRaw[];
   props?: Recordable;
 }
+
 export type AppRouteModule = AppRouteRecordRaw;

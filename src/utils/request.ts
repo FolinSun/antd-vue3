@@ -53,7 +53,7 @@ const errorHandler = (error: any) => {
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.VUE_APP_APIHOST, //  api 的 base_url
+  baseURL: process.env.VUE_APP_BASE_URL, //  api 的 base_url
   withCredentials: true, // 当跨域请求时发送cookie
   timeout: 0, // 请求超时时间(单位毫秒) 0表示不做限制
 });

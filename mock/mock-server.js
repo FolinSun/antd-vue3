@@ -10,8 +10,9 @@ function registerMockRoutes(mockDir, app) {
   let mockLastIndex = 0;
   let mockRoutesLength = 0;
   try {
-    // 导入 /mock 下文件
+    // 导入 /mock/modules 下所有js文件
     const context = requireContext(mockDir, false, /\.js$/);
+
     context.keys().forEach((fileName) => {
       // 获取内容
       const mocks = context(fileName);
@@ -65,14 +66,16 @@ function unRegisterMockRoutes(mockDir) {
   });
 }
 
+// 导出
 module.exports = (app) => {
-  const mockDir = path.resolve('./mock/modules');
+  // 绝对路径
+  let mockDir = path.resolve('./mock/modules');
 
   const mockRoutes = registerMockRoutes(mockDir, app);
   let mockRoutesLength = mockRoutes.mockRoutesLength;
   let mockStartIndex = mockRoutes.mockStartIndex;
 
-  // watch files, hot reload mock server
+  // watch files, hot reload mock server (监视文件，热重载模拟服务器)
   chokidar
     .watch(mockDir, {
       ignoreInitial: true,

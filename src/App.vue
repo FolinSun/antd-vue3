@@ -7,12 +7,14 @@
 <script lang="ts">
   import { Options, Vue } from 'vue-class-component';
   import zhCN from 'ant-design-vue/es/locale/zh_CN';
-
   @Options({
     name: 'App',
   })
   export default class App extends Vue {
     locale = zhCN;
+    async mounted() {
+      console.log(`mounted`);
+    }
   }
 </script>
 
