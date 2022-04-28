@@ -50,6 +50,7 @@ interface RouteMeta {
 // }
 
 // @ts-ignore
+// Omit<T, K> 从另一个对象类型中剔除某些属性，并创建一个新的对象类型
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   name: string;
   meta: RouteMeta;
